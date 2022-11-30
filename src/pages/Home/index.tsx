@@ -1,3 +1,11 @@
+import { CoffestList } from "./components/CoffesList";
+import { Introduction } from "./components/Introduction";
+
 export function Home() {
-  return <h1>HOME</h1>;
+  return (
+    <>
+      <Introduction />
+      <CoffestList />
+    </>
+  );
 }

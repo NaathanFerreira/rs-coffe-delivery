@@ -7,7 +7,6 @@ export function CartIconButton() {
   return (
     <Link to="/checkout">
       <IconButton
-        as="a"
         ml={2}
         aria-label="Cart Icon Button"
         css={css`
