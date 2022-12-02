@@ -1,4 +1,4 @@
-import { Divider, VStack } from "@chakra-ui/react";
+import { Box, Divider, VStack } from "@chakra-ui/react";
 import { CoffeData } from "../../../../types/coffe";
 import { OrderItem } from "./OrderItem";
 
@@ -28,10 +28,10 @@ export function OrderItemsList() {
     <VStack spacing={10}>
       {cart.map((orderItem) => {
         return (
-          <>
+          <Box key={orderItem.id} width="100%">
             <OrderItem orderItem={orderItem} />
-            <Divider />
-          </>
+            <Divider my={6} />
+          </Box>
         );
       })}
     </VStack>

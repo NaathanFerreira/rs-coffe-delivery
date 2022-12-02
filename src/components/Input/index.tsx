@@ -1,27 +1,27 @@
 import {
   FormControl,
+  FormErrorMessage,
   Input as ChakraInput,
   InputGroup,
   InputRightElement,
   Text,
 } from "@chakra-ui/react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 
 interface InputProps {
   name: string;
   type: string;
   placeholder: string;
   optional?: boolean;
+  error?: any;
 }
 
-export function Input({
-  name,
-  placeholder,
-  type,
-  optional,
-  ...rest
-}: InputProps) {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { name, placeholder, type, optional, error, ...rest },
+  ref
+) => {
   return (
-    <FormControl>
+    <FormControl isInvalid={!!error}>
       <InputGroup>
         <ChakraInput
           bg="gray.75"
@@ -35,6 +35,7 @@ export function Input({
             bgColor: "gray.100",
             borderColor: "orange.500",
           }}
+          ref={ref}
           {...rest}
         />
         {optional && (
@@ -45,6 +46,9 @@ export function Input({
           </InputRightElement>
         )}
       </InputGroup>
+      {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
     </FormControl>
   );
-}
+};
+
+export const Input = forwardRef(InputBase);

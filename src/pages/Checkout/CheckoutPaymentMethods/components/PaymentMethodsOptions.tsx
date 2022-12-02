@@ -2,7 +2,8 @@ import { Grid } from "@chakra-ui/react";
 import { PaymentOptionsCard } from "./PaymentOptionsCard";
 import { AiOutlineBank, AiOutlineCreditCard } from "react-icons/ai";
 import { BsCash } from "react-icons/bs";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 const paymentMethods = {
   CREDIT_CARD: "CARTÃO DE CRÉDITO",
@@ -12,6 +13,12 @@ const paymentMethods = {
 
 export function PaymentMethodsOptions() {
   const [selectedPaymentMethod, setSelectPaymentMethod] = useState("");
+
+  const { setValue } = useFormContext();
+
+  useEffect(() => {
+    setValue("metodoPagamento", selectedPaymentMethod);
+  }, [selectedPaymentMethod]);
 
   return (
     <Grid gridTemplateColumns="repeat(3, 1fr)" gap={2} width="100%" my={10}>
